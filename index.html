@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pradeep & Priyanka | A Royal Union</title>
+    
+    <!-- Premium Fonts: Cinzel Decorative for ultra-royal serif, Great Vibes for script, Tiro for Hindi -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;800&family=Great+Vibes&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FDFBF7',
+                        ivory: '#F4EFE6',
+                        crimson: '#5A0B14',
+                        deepRed: '#38040A',
+                        gold: '#D4AF37',
+                        lightGold: '#F3E5AB',
+                        darkGold: '#997A15',
+                    },
+                    fontFamily: {
+                        royal: ['"Cinzel Decorative"', 'serif'],
+                        serif: ['Cinzel', 'serif'],
+                        script: ['"Great Vibes"', 'cursive'],
+                    },
+                    backgroundImage: {
+                        'gold-gradient': 'linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C)',
+                        'red-gradient': 'linear-gradient(to bottom right, #5A0B14, #38040A)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* === Global & Resets === */
+        body {
+            margin: 0; padding: 0;
+            background-color: #FDFBF7;
+            color: #38040A;
+            overflow-x: hidden;
+            cursor: none;
+            scroll-behavior: smooth;
+        }
+
+        body.no-scroll { overflow: hidden; height: 100vh; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FDFBF7; }
+        ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #997A15; }
+
+        /* === Hindi Typography Overrides === */
+        body.hindi-active .font-royal, 
+        body.hindi-active .font-serif {
+            font-family: 'Tiro Devanagari Hindi', serif !important;
+            letter-spacing: 0.03em;
+        }
+        body.hindi-active .font-script {
+            font-family: 'Amita', cursive !important;
+            letter-spacing: 0.05em;
+        }
+
+        /* === Custom Golden Spark Cursor === */
+        #cursor-spark {
+            width: 20px; height: 20px;
+            background: radial-gradient(circle, #FFF 0%, #D4AF37 40%, transparent 100%);
+            border-radius: 50%;
+            position: fixed; pointer-events: none; z-index: 9999;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px 8px rgba(212, 175, 55, 0.4);
+            transition: width 0.3s, height 0.3s;
+            mix-blend-mode: multiply;
+        }
+        @media (hover: none) and (pointer: coarse) {
+            body { cursor: auto; }
+            #cursor-spark { display: none !important; }
+        }
+
+        /* === Typography Utilities === */
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #BF953F, #D4AF37, #B38728, #AA771C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .emboss-gold {
+            text-shadow: -1px -1px 1px rgba(255,255,255,0.8), 2px 2px 4px rgba(153, 122, 21, 0.4);
+        }
+
+        /* === Entry Screen (Exact Match to Reference Image) === */
+        #entry-overlay {
+            position: fixed; inset: 0; z-index: 2000;
+            background-color: #FDFBF7;
+            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.1'%3E%3Cpath d='M40 40c0-11.046-8.954-20-20-20 11.046 0 20-8.954 20-20 0 11.046 8.954 20 20 20-11.046 0-20 8.954-20 20 0-11.046-8.954-20-20-20 11.046 0 20-8.954 20-20 0 11.046 8.954 20 20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 1.2s cubic-bezier(0.77, 0, 0.175, 1), visibility 1.2s;
+        }
+        .premium-card {
+            background: #FFFFFF;
+            padding: 2.5rem 1.5rem;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 90%; width: 440px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .premium-card::before {
+            content: ''; position: absolute; inset: 8px;
+            border: 1.2px solid #D4AF37; border-radius: 8px;
+            pointer-events: none; opacity: 0.8;
+        }
+        .btn-seal {
+            background: #38040A;
+            color: #FFFFFF;
+            padding: 0.75rem 2.5rem;
+            border-radius: 9999px;
+            box-shadow: 0 10px 25px rgba(56, 4, 10, 0.3);
+            transition: all 0.4s ease;
+            font-weight: 600;
+        }
+        .btn-seal:hover {
+            transform: scale(1.05);
+            background: #5A0B14;
+        }
+
+        /* === 3D Tilt Cards === */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            transition: transform 0.1s;
+        }
+        .tilt-content {
+            transform: translateZ(30px); /* Pops content out */
+        }
+
+        /* === Particles / Golden Dust === */
+        #particles {
+            position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden;
+        }
+        .dust {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(212,175,55,0.8) 40%, transparent 100%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: drift linear infinite;
+        }
+        @keyframes drift {
+            0% { transform: translateY(100vh) scale(0) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.5; }
+            100% { transform: translateY(-10vh) scale(1.5) rotate(360deg); opacity: 0; }
+        }
+
+        /* === Hero Section === */
+        #hero-section {
+            background-color: #FDFBF7;
+            position: relative;
+        }
+        .hero-mandala {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150vw; height: 150vw;
+            max-width: 1200px; max-height: 1200px;
+            opacity: 0.04;
+            animation: spinSlow 60s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes spinSlow { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+
+        /* === Scroll Indicator (Ref Image 2) === */
+        .scroll-indicator-container {
+            display: flex; flex-direction: column; align-items: center;
+            position: relative; width: 100%;
+        }
+        .scroll-v-line {
+            width: 1.5px; height: 80px;
+            background-color: #38040A; opacity: 0.4;
+        }
+        .scroll-h-lines {
+            display: flex; align-items: center; justify-content: center;
+            gap: 60px; width: 100%; position: absolute; top: 40px;
+        }
+        @media (min-width: 768px) {
+            .scroll-h-lines { gap: 100px; top: 40px; }
+            .scroll-v-line { height: 100px; }
+        }
+        .scroll-h-line {
+            height: 1.5px; width: 60px; background-color: #38040A; opacity: 0.3;
+        }
+        @media (min-width: 768px) {
+            .scroll-h-line { width: 80px; }
+        }
+        
+        /* === Scroll Reveal Animations === */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-left { opacity: 0; transform: translateX(-50px); transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal-left.active { opacity: 1; transform: translateX(0); }
+        .reveal-right { opacity: 0; transform: translateX(50px); transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal-right.active { opacity: 1; transform: translateX(0); }
+        .reveal-scale { opacity: 0; transform: scale(0.9); transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal-scale.active { opacity: 1; transform: scale(1); }
+
+        /* === Glassmorphism & Patterns === */
+        .glass-box {
+            background: rgba(253, 251, 247, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 0 20px 40px rgba(90, 11, 20, 0.08);
+        }
+        .pattern-bg {
+            background-color: #5A0B14;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.1'%3E%3Cpath d='M30 30c0-8.284-6.716-15-15-15 8.284 0 15-6.716 15-15 0 8.284 6.716 15 15 15-8.284 0-15 6.716-15 15z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* === Masonry Gallery === */
+        .masonry-gallery {
+            column-count: 1;
+            column-gap: 1.5rem;
+        }
+        @media (min-width: 640px) { .masonry-gallery { column-count: 2; } }
+        @media (min-width: 1024px) { .masonry-gallery { column-count: 3; } }
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            position: relative;
+            border: 4px solid #D4AF37;
+            overflow: hidden;
+        }
+        .masonry-item::after {
+            content: ''; position: absolute; inset: 6px; border: 1px solid rgba(255,255,255,0.5); pointer-events: none;
+        }
+
+        /* === Timeline Upgrades === */
+        .timeline-line {
+            background: linear-gradient(to bottom, transparent, #D4AF37, #5A0B14, #D4AF37, transparent);
+        }
+        .timeline-dot {
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+            animation: pulseDot 2s infinite;
+        }
+        @keyframes pulseDot {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+
+    </style>
+</head>
+<body class="font-serif antialiased no-scroll">
+
+    <!-- Custom Spark Cursor -->
+    <div id="cursor-spark"></div>
+
+    <!-- Floating Gold Dust Particles -->
+    <div id="particles"></div>
+
+    <!-- Top Controls -->
+    <div class="fixed top-4 right-4 z-[1500] flex gap-3">
+        <!-- Language Toggle -->
+        <button id="lang-toggle" onclick="toggleLanguage()" class="bg-cream border-2 border-gold text-crimson rounded-full w-10 h-10 flex items-center justify-center font-serif font-bold shadow-[0_5px_15px_rgba(90,11,20,0.2)] hover:bg-gold hover:text-white transition-all text-sm group">
+            <span class="group-hover:scale-110 transition-transform">अ/A</span>
+        </button>
+        <!-- Audio Control -->
+        <div id="audio-control" class="paused" onclick="toggleMusic()" style="position: static; cursor: pointer; width: 40px; height: 40px; background: #FDFBF7; border: 2px solid #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #5A0B14;">
+            <svg id="music-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+            <div id="music-waves" class="music-wave hidden flex items-end gap-[2px] h-[12px]">
+                <div class="wave-bar w-[2px] h-[4px] bg-[#5A0B14] animate-[wave_1s_infinite_ease-in-out]"></div>
+                <div class="wave-bar w-[2px] h-[4px] bg-[#5A0B14] animate-[wave_1s_infinite_ease-in-out_0.2s]"></div>
+                <div class="wave-bar w-[2px] h-[4px] bg-[#5A0B14] animate-[wave_1s_infinite_ease-in-out_0.4s]"></div>
+            </div>
+        </div>
+    </div>
+    
+    <audio id="bg-music" loop>
+        <source src="Indian 1.wav" type="audio/mpeg">
+    </audio>
+
+    <!-- ================= ENTRY SCREEN (MATCHING REFERENCE IMAGE 1) ================= -->
+    <div id="entry-overlay" class="w-full h-full flex justify-center items-center px-4">
+        <div class="premium-card">
+            <p class="font-script text-crimson text-[11px] md:text-sm mb-4 italic lang-text" data-en="“A tradition passed down through the Vedas...”" data-hi="“वेदों से चली आ रही एक परंपरा...”">“A tradition passed down through the Vedas...”</p>
+            
+            <!-- Gold Heart Icon -->
+            <div class="mb-6 flex justify-center text-gold">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            
+            <div class="flex items-center justify-center gap-4 mb-6">
+                <div class="h-[1px] w-10 md:w-16 bg-gold/40"></div>
+                <h2 class="font-serif text-crimson tracking-[0.25em] font-bold text-xs md:text-sm lang-text" data-en="SHUBH SAGAI" data-hi="शुभ सगाई">SHUBH SAGAI</h2>
+                <div class="h-[1px] w-10 md:w-16 bg-gold/40"></div>
+            </div>
+            
+            <p class="font-serif text-gray-400 text-[9px] md:text-[10px] tracking-[0.2em] mb-12 uppercase lang-text" data-en="WEDNESDAY, 25TH MARCH 2026" data-hi="बुधवार, २५ मार्च २०२६">WEDNESDAY, 25TH MARCH 2026</p>
+            
+            <h1 class="font-serif text-xl md:text-3xl text-gold-gradient tracking-widest lang-text" data-en="PRADEEP SINGH" data-hi="प्रदीप सिंह">PRADEEP SINGH</h1>
+            <p class="font-script text-gray-400 text-base md:text-lg my-2 lang-text" data-en="weds" data-hi="संग">weds</p>
+            <h1 class="font-serif text-xl md:text-3xl text-gold-gradient tracking-widest mb-16 lang-text" data-en="PRIYANKA" data-hi="प्रियंका">PRIYANKA</h1>
+            
+            <button class="btn-seal flex items-center justify-center gap-3 mx-auto uppercase shadow-xl text-[10px] md:text-xs tracking-[0.2em]" onclick="openInvitation()">
+                <span class="lang-text" data-en="Open Invitation" data-hi="निमंत्रण खोलें">Open Invitation</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content" class="relative z-10 opacity-0 transition-opacity duration-1000">
+        
+        <!-- ================= CINEMATIC HERO ================= -->
+        <section id="hero-section" class="min-h-screen flex flex-col items-center justify-center px-4 pt-10 overflow-hidden">
+            <!-- Rotating Background Mandala -->
+            <svg class="hero-mandala" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 0C50 0 60 40 100 50C100 50 60 60 50 100C50 100 40 60 0 50C0 50 40 40 50 0Z" fill="#D4AF37"/>
+                <circle cx="50" cy="50" r="30" stroke="#D4AF37" stroke-width="0.5"/>
+                <circle cx="50" cy="50" r="40" stroke="#D4AF37" stroke-width="0.2"/>
+            </svg>
+
+            <div class="z-10 flex flex-col items-center justify-center w-full max-w-5xl mx-auto mb-20">
+                <div class="reveal-scale text-center">
+                    <p class="font-serif tracking-[0.3em] md:tracking-[0.4em] text-darkGold uppercase text-xs md:text-sm mb-6 font-bold lang-text" data-en="Where Tradition Meets Destiny" data-hi="जहाँ परंपरा और भाग्य मिलते हैं">Where Tradition Meets Destiny</p>
+                    
+                    <div class="relative py-10 px-4 w-full">
+                        <h1 class="font-script text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-crimson leading-tight z-10 relative text-shadow-lg">
+                            <span class="block transform -rotate-2 hover:rotate-0 transition-transform duration-500 lang-text" data-en="Pradeep Singh" data-hi="प्रदीप सिंह">Pradeep Singh</span>
+                            <span class="text-4xl sm:text-5xl md:text-7xl font-royal block text-gold my-2 md:-my-4 z-0 relative">&amp;</span>
+                            <span class="block transform rotate-2 hover:rotate-0 transition-transform duration-500 lang-text" data-en="Priyanka" data-hi="प्रियंका">Priyanka</span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Redesigned Scroll Indicator (Exact Match to Ref Image 2) -->
+            <div class="absolute bottom-6 left-0 right-0 z-20 flex justify-center">
+                <div class="scroll-indicator-container reveal">
+                    <div class="scroll-h-lines">
+                        <div class="scroll-h-line"></div>
+                        <div class="scroll-h-line"></div>
+                    </div>
+                    
+                    <div class="text-center bg-cream px-6 z-10">
+                        <h2 class="font-serif text-crimson tracking-[0.2em] font-bold text-xs md:text-base lang-text" data-en="A ROYAL UNION BEGINS" data-hi="एक शाही मिलन की शुरुआत">A ROYAL UNION BEGINS</h2>
+                    </div>
+
+                    <div class="scroll-v-line mt-2"></div>
+                    
+                    <p class="font-serif text-[10px] md:text-xs tracking-[0.5em] text-crimson/50 uppercase mt-4 lang-text" data-en="SCROLL" data-hi="स्क्रॉल">SCROLL</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Separator -->
+        <div class="w-full h-16 bg-gradient-to-b from-[#FDFBF7] to-[#5A0B14]"></div>
+
+        <!-- ================= COUNTDOWN (GLASSMORPHISM) ================= -->
+        <section class="py-20 pattern-bg relative overflow-hidden text-cream border-y-4 border-gold">
+            <div class="container mx-auto px-4 z-10 relative">
+                <div class="text-center mb-12 reveal">
+                    <h3 class="font-royal text-3xl md:text-5xl text-gold-gradient mb-3 drop-shadow-md lang-text" data-en="The Royal Countdown" data-hi="शाही उलटी गिनती">The Royal Countdown</h3>
+                    <p class="font-script text-2xl md:text-4xl text-lightGold opacity-90 lang-text" data-en="Awaiting the auspicious moment..." data-hi="शुभ क्षण की प्रतीक्षा में...">Awaiting the auspicious moment...</p>
+                </div>
+                
+                <div id="countdown" class="grid grid-cols-2 md:flex md:justify-center gap-4 md:gap-8 reveal-scale max-w-sm md:max-w-none mx-auto">
+                    <!-- Days -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl glass-box flex items-center justify-center mb-3 transform hover:-translate-y-2 transition-transform duration-300 relative border border-gold/30">
+                            <div class="absolute inset-2 border border-dashed border-gold/30 rounded-xl"></div>
+                            <span id="days" class="text-4xl md:text-5xl font-royal text-gold font-bold">00</span>
+                        </div>
+                        <span class="text-[10px] md:text-sm tracking-[0.2em] text-cream uppercase font-serif lang-text" data-en="Days" data-hi="दिन">Days</span>
+                    </div>
+                    <!-- Hours -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl glass-box flex items-center justify-center mb-3 transform hover:-translate-y-2 transition-transform duration-300 relative border border-gold/30">
+                            <div class="absolute inset-2 border border-dashed border-gold/30 rounded-xl"></div>
+                            <span id="hours" class="text-4xl md:text-5xl font-royal text-gold font-bold">00</span>
+                        </div>
+                        <span class="text-[10px] md:text-sm tracking-[0.2em] text-cream uppercase font-serif lang-text" data-en="Hours" data-hi="घंटे">Hours</span>
+                    </div>
+                    <!-- Minutes -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl glass-box flex items-center justify-center mb-3 transform hover:-translate-y-2 transition-transform duration-300 relative border border-gold/30">
+                            <div class="absolute inset-2 border border-dashed border-gold/30 rounded-xl"></div>
+                            <span id="minutes" class="text-4xl md:text-5xl font-royal text-gold font-bold">00</span>
+                        </div>
+                        <span class="text-[10px] md:text-sm tracking-[0.2em] text-cream uppercase font-serif lang-text" data-en="Minutes" data-hi="मिनट">Minutes</span>
+                    </div>
+                    <!-- Seconds -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl glass-box flex items-center justify-center mb-3 transform hover:-translate-y-2 transition-transform duration-300 relative border border-gold/30">
+                            <div class="absolute inset-2 border border-dashed border-gold/30 rounded-xl"></div>
+                            <span id="seconds" class="text-4xl md:text-5xl font-royal text-gold font-bold">00</span>
+                        </div>
+                        <span class="text-[10px] md:text-sm tracking-[0.2em] text-cream uppercase font-serif lang-text" data-en="Seconds" data-hi="सेकंड">Seconds</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= THE COUPLE ================= -->
+        <section class="py-24 bg-[#FDFBF7] relative">
+            <svg class="absolute top-0 right-0 w-32 h-32 md:w-64 md:h-64 opacity-10 text-crimson transform rotate-90" viewBox="0 0 100 100" fill="currentColor"><path d="M0 0h100v100C44.77 100 0 55.23 0 0z"/></svg>
+
+            <div class="container mx-auto px-4 z-10 relative">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="font-royal text-4xl md:text-6xl text-crimson mb-2 lang-text" data-en="The Couple" data-hi="वर - वधू">The Couple</h2>
+                    <div class="w-24 h-[2px] bg-gold mx-auto"></div>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-24">
+                    <!-- Groom -->
+                    <div class="reveal-left tilt-card cursor-pointer group">
+                        <div class="tilt-content relative">
+                            <div class="w-64 h-80 md:w-[320px] md:h-[420px] bg-white border-4 border-gold p-3 shadow-2xl relative z-10">
+                                <div class="w-full h-full bg-cover bg-center border border-crimson/20" style="background-image: url('1.jpeg');"></div>
+                                <div class="absolute inset-3 bg-gradient-to-t from-crimson via-transparent to-transparent opacity-80"></div>
+                                <div class="absolute bottom-8 left-0 right-0 text-center text-cream">
+                                    <h3 class="font-royal text-2xl md:text-3xl font-bold lang-text" data-en="Pradeep Singh" data-hi="प्रदीप सिंह">Pradeep Singh</h3>
+                                    <p class="font-script text-xl text-gold mt-1 lang-text" data-en="The Groom" data-hi="वर">The Groom</p>
+                                </div>
+                            </div>
+                            <div class="absolute top-4 left-4 right-[-16px] bottom-[-16px] border-[3px] border-crimson/30 -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300"></div>
+                        </div>
+                    </div>
+
+                    <div class="font-script text-6xl md:text-8xl text-gold reveal transform hover:rotate-12 transition-transform duration-500">&amp;</div>
+
+                    <!-- Bride -->
+                    <div class="reveal-right tilt-card cursor-pointer group">
+                        <div class="tilt-content relative">
+                            <div class="w-64 h-80 md:w-[320px] md:h-[420px] bg-white border-4 border-gold p-3 shadow-2xl relative z-10">
+                                <div class="w-full h-full bg-cover bg-center border border-crimson/20" style="background-image: url('2.jpeg');"></div>
+                                <div class="absolute inset-3 bg-gradient-to-t from-crimson via-transparent to-transparent opacity-80"></div>
+                                <div class="absolute bottom-8 left-0 right-0 text-center text-cream">
+                                    <h3 class="font-royal text-2xl md:text-3xl font-bold lang-text" data-en="Priyanka" data-hi="प्रियंका">Priyanka</h3>
+                                    <p class="font-script text-xl text-gold mt-1 lang-text" data-en="The Bride" data-hi="वधू">The Bride</p>
+                                </div>
+                            </div>
+                            <div class="absolute top-4 -left-4 right-[16px] bottom-[-16px] border-[3px] border-crimson/30 -z-10 group-hover:-translate-x-2 group-hover:translate-y-2 transition-transform duration-300"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= EVENT DETAILS ================= -->
+        <section class="py-24 relative overflow-hidden">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1583939000240-69279c67ab27?q=80&w=1600&auto=format&fit=crop')] bg-cover bg-center bg-fixed opacity-[0.15]"></div>
+            
+            <div class="container mx-auto px-4 z-10 relative">
+                <div class="max-w-4xl mx-auto glass-box p-8 md:p-16 text-center reveal-scale border-t-8 border-t-gold relative">
+                    <div class="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-crimson w-20 h-20 rounded-full border-4 border-gold flex items-center justify-center shadow-lg">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#FDFBF7"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    </div>
+
+                    <h2 class="font-royal text-3xl md:text-5xl text-crimson mb-8 mt-4 font-bold lang-text uppercase tracking-wide" data-en="Engagement Ceremony" data-hi="सगाई समारोह">Engagement Ceremony</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-deepRed items-center justify-center font-serif mt-12">
+                        <!-- Date -->
+                        <div class="flex flex-col items-center">
+                            <span class="text-xs tracking-[0.2em] text-darkGold uppercase mb-3 font-bold lang-text" data-en="Date" data-hi="दिनांक">Date</span>
+                            <div class="border-t border-b border-crimson/20 py-4 w-full">
+                                <p class="text-xl md:text-2xl font-bold lang-text" data-en="25th March" data-hi="२५ मार्च">25th March</p>
+                                <p class="text-lg text-crimson mt-1">2026</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Venue (Center Focus) -->
+                        <div class="flex flex-col items-center">
+                            <span class="text-xs tracking-[0.2em] text-darkGold uppercase mb-3 font-bold lang-text" data-en="Venue" data-hi="स्थान">Venue</span>
+                            <p class="font-royal text-3xl md:text-5xl text-crimson mb-2 leading-tight lang-text" data-en="Ranip" data-hi="रानिप">Ranip</p>
+                            <p class="text-sm md:text-base font-semibold tracking-wider lang-text" data-en="Ahmedabad" data-hi="अहमदाबाद">Ahmedabad</p>
+                        </div>
+
+                        <!-- Time -->
+                        <div class="flex flex-col items-center">
+                            <span class="text-xs tracking-[0.2em] text-darkGold uppercase mb-3 font-bold lang-text" data-en="Time" data-hi="समय">Time</span>
+                            <div class="border-t border-b border-crimson/20 py-4 w-full">
+                                <p class="text-xl md:text-2xl font-bold">06:00 PM</p>
+                                <p class="text-sm text-crimson mt-2 tracking-widest uppercase lang-text" data-en="Onwards" data-hi="से आगे">Onwards</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12">
+                        <a href="https://maps.google.com/?q=Ranip,+Ahmedabad" target="_blank" class="inline-block border border-crimson text-crimson hover:bg-crimson hover:text-cream transition-all duration-300 px-10 py-4 tracking-[0.2em] text-xs uppercase font-bold lang-text" data-en="Navigate to Venue" data-hi="मार्गदर्शन प्राप्त करें">Navigate to Venue</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ELEGANT TIMELINE ================= -->
+        <section class="py-24 bg-[#F4EFE6] text-deepRed relative border-y border-gold/30">
+            <div class="container mx-auto px-4 z-10 relative">
+                <div class="text-center mb-20 reveal">
+                    <h2 class="font-royal text-4xl md:text-5xl text-crimson mb-4 font-bold lang-text" data-en="The Royal Itinerary" data-hi="शाही कार्यक्रम">The Royal Itinerary</h2>
+                    <div class="w-16 md:w-24 h-[2px] bg-gold mx-auto rounded-full"></div>
+                </div>
+
+                <div class="max-w-3xl mx-auto relative py-4 pl-4 md:pl-0">
+                    <div class="absolute left-[38px] md:left-32 top-0 bottom-0 w-[2px] md:w-[3px] timeline-line rounded-full"></div>
+
+                    <!-- Event 1 -->
+                    <div class="relative flex items-start mb-20 reveal-left group">
+                        <div class="absolute left-[38px] md:left-32 transform -translate-x-1/2 flex items-center justify-center w-16 h-16 md:w-24 md:h-24 rounded-full bg-[#F4EFE6] border-4 border-gold z-10 timeline-dot transition-transform group-hover:scale-110">
+                            <div class="w-4 h-4 md:w-6 md:h-6 bg-crimson rounded-full"></div>
+                        </div>
+                        
+                        <div class="pl-24 md:pl-56 w-full pt-1 md:pt-4">
+                            <div class="inline-block bg-crimson text-cream px-4 py-1.5 md:px-6 md:py-2 rounded shadow-lg mb-3 md:mb-4">
+                                <span class="font-serif text-xs md:text-base font-bold tracking-[0.1em]">06:00 PM</span>
+                            </div>
+                            <h3 class="font-royal text-2xl md:text-4xl text-crimson font-bold mb-2 lang-text" data-en="Welcome of Guests" data-hi="अतिथियों का स्वागत">Welcome of Guests</h3>
+                            <p class="font-script text-xl md:text-3xl text-darkGold lang-text" data-en="Royal Tilak & Swagat" data-hi="शाही तिलक और स्वागत">Royal Tilak & Swagat</p>
+                        </div>
+                    </div>
+
+                    <!-- Event 2 -->
+                    <div class="relative flex items-start mb-20 reveal-left group">
+                        <div class="absolute left-[38px] md:left-32 transform -translate-x-1/2 flex items-center justify-center w-16 h-16 md:w-24 md:h-24 rounded-full bg-[#F4EFE6] border-4 border-gold z-10 timeline-dot transition-transform group-hover:scale-110">
+                            <div class="w-4 h-4 md:w-6 md:h-6 bg-crimson rounded-full"></div>
+                        </div>
+                        
+                        <div class="pl-24 md:pl-56 w-full pt-1 md:pt-4">
+                            <div class="inline-block bg-crimson text-cream px-4 py-1.5 md:px-6 md:py-2 rounded shadow-lg mb-3 md:mb-4">
+                                <span class="font-serif text-xs md:text-base font-bold tracking-[0.1em]">07:30 PM</span>
+                            </div>
+                            <h3 class="font-royal text-2xl md:text-4xl text-crimson font-bold mb-2 lang-text" data-en="Ring Ceremony" data-hi="अंगूठी की रस्म">Ring Ceremony</h3>
+                            <p class="font-script text-xl md:text-3xl text-darkGold lang-text" data-en="The Exchange of Vows" data-hi="वचनों का आदान-प्रदान">The Exchange of Vows</p>
+                        </div>
+                    </div>
+
+                    <!-- Event 3 -->
+                    <div class="relative flex items-start reveal-left group">
+                        <div class="absolute left-[38px] md:left-32 transform -translate-x-1/2 flex items-center justify-center w-16 h-16 md:w-24 md:h-24 rounded-full bg-[#F4EFE6] border-4 border-gold z-10 timeline-dot transition-transform group-hover:scale-110">
+                            <div class="w-4 h-4 md:w-6 md:h-6 bg-crimson rounded-full"></div>
+                        </div>
+                        
+                        <div class="pl-24 md:pl-56 w-full pt-1 md:pt-4">
+                            <div class="inline-block bg-crimson text-cream px-4 py-1.5 md:px-6 md:py-2 rounded shadow-lg mb-3 md:mb-4">
+                                <span class="font-serif text-xs md:text-base font-bold tracking-[0.1em]">08:30 PM</span>
+                            </div>
+                            <h3 class="font-royal text-2xl md:text-4xl text-crimson font-bold mb-2 lang-text" data-en="Shahi Bhoj" data-hi="शाही भोज">Shahi Bhoj</h3>
+                            <p class="font-script text-xl md:text-3xl text-darkGold lang-text" data-en="Royal Feast & Celebrations" data-hi="शाही दावत और जश्न">Royal Feast & Celebrations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= FAMILY SECTION ================= -->
+        <section class="py-16 md:py-24 bg-cream relative">
+            <div class="container mx-auto px-4 z-10 relative text-center mb-10">
+                <h2 class="font-royal text-4xl md:text-6xl text-crimson mb-3 font-bold lang-text" data-en="Our Family" data-hi="हमारा परिवार">Our Family</h2>
+                <p class="font-script text-2xl md:text-4xl text-darkGold lang-text" data-en="Our pillar of strength" data-hi="हमारी शक्ति का आधार">Our pillar of strength</p>
+                <div class="w-24 h-[2px] bg-gold mx-auto mt-4"></div>
+            </div>
+
+            <div class="max-w-5xl mx-auto reveal px-4">
+                <div class="relative p-3 md:p-4 border-[3px] border-gold bg-[#FAF4E1] shadow-[0_15px_30px_rgba(0,0,0,0.1)] group">
+                    <div class="relative w-full h-72 md:h-[600px] overflow-hidden">
+                        <div class="w-full h-full bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" style="background-image: url('3.jpeg');"></div>
+                        <div class="absolute inset-2 md:inset-4 border border-crimson opacity-40 pointer-events-none"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 bg-[#FAF4E1] border-[3px] border-gold rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center text-crimson shadow-md z-10">
+                        <svg width="24" height="24" class="md:w-8 md:h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= MASONRY GALLERY ================= -->
+        <section class="py-24 pattern-bg relative border-t-[8px] border-gold text-cream">
+            <div class="container mx-auto px-4 z-10 relative">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="font-royal text-4xl md:text-6xl text-gold-gradient mb-3 font-bold lang-text drop-shadow-md" data-en="Moments of Love" data-hi="प्रेम के पल">Moments of Love</h2>
+                    <p class="font-script text-2xl md:text-4xl text-lightGold opacity-90 lang-text" data-en="A beautiful journey together" data-hi="एक साथ खूबसूरत यात्रा">A beautiful journey together</p>
+                </div>
+
+                <div class="masonry-gallery max-w-6xl mx-auto px-2">
+                    <div class="masonry-item reveal rounded shadow-xl">
+                        <div class="w-full bg-cover bg-center h-80 md:h-96" style="background-image: url('https://i.pinimg.com/736x/b3/fe/21/b3fe212ce132907b5fd87f4e85e4e5a2.jpg');"></div>
+                    </div>
+                    <div class="masonry-item reveal rounded shadow-xl">
+                        <div class="w-full bg-cover bg-center h-64 md:h-72" style="background-image: url('https://i.pinimg.com/736x/9c/a5/56/9ca556b92e8547954cf41265af6ee102.jpg');"></div>
+                    </div>
+                    <div class="masonry-item reveal rounded shadow-xl">
+                        <div class="w-full bg-cover bg-center h-96 md:h-[450px]" style="background-image: url('https://i.pinimg.com/1200x/60/82/89/60828931ff7a8ce3e24b6c19052a21ee.jpg');"></div>
+                    </div>
+                     <div class="masonry-item reveal rounded shadow-xl hidden md:block">
+                        <div class="w-full bg-cover bg-center h-64" style="background-image: url('https://i.pinimg.com/736x/0c/8c/7a/0c8c7ac0512cf0c41a52f8edd28075ec.jpg');"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= FOOTER ================= -->
+        <footer class="bg-[#0B0C10] py-16 text-center relative border-t-2 border-gold text-cream">
+            <div class="container mx-auto px-4">
+                <div class="w-16 h-16 mx-auto mb-6 text-gold">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 6 4 10 4 14C4 18.418 7.582 22 12 22C16.418 22 20 18.418 20 14C20 10 16 6 12 2ZM12 20C9.243 20 7 17.757 7 15C7 13.065 8.944 10.584 12 7.153C15.056 10.584 17 13.065 17 15C17 17.757 14.757 20 12 20Z"/></svg>
+                </div>
+                <h3 class="font-script text-4xl md:text-5xl text-gold mb-3 lang-text" data-en="With Blessings" data-hi="आशीर्वाद सहित">With Blessings</h3>
+                <p class="font-serif text-cream/80 uppercase tracking-[0.2em] text-sm md:text-base mb-8 font-bold lang-text" data-en="Rathore & Sekhawat Families" data-hi="राठौड़ और शेखावत परिवार">Rathore & Sekhawat Families</p>
+                
+                <!-- Brand Footer (Matching Reference Image 2) -->
+                <div class="w-full max-w-sm mx-auto border-t border-white/10 pt-8 mt-8">
+                    <p class="text-[11px] md:text-xs text-[#8292A1] font-serif tracking-[0.4em] uppercase lang-text" data-en="DESIGNED BY NYOTA INVITATION" data-hi="न्योटा इनविटेशन द्वारा डिज़ाइन किया गया">DESIGNED BY NYOTA INVITATION</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        // --- 1. Custom Spark Cursor ---
+        const cursor = document.getElementById('cursor-spark');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        document.addEventListener('mousedown', () => cursor.style.transform = 'translate(-50%, -50%) scale(1.5)');
+        document.addEventListener('mouseup', () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
+
+        // --- 2. Language Toggle ---
+        let currentLang = 'en';
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'hi' : 'en';
+            
+            if(currentLang === 'hi') {
+                document.body.classList.add('hindi-active');
+                document.getElementById('lang-toggle').querySelector('span').innerText = 'A/अ';
+            } else {
+                document.body.classList.remove('hindi-active');
+                document.getElementById('lang-toggle').querySelector('span').innerText = 'अ/A';
+            }
+            
+            document.querySelectorAll('.lang-text').forEach(el => {
+                el.innerText = el.getAttribute(`data-${currentLang}`);
+            });
+        }
+
+        // --- 3. Open Invitation & Audio ---
+        const bgMusic = document.getElementById('bg-music');
+        const audioControl = document.getElementById('audio-control');
+        const musicIcon = document.getElementById('music-icon');
+        const musicWaves = document.getElementById('music-waves');
+        let isMusicPlaying = false;
+
+        function openInvitation() {
+            const overlay = document.getElementById('entry-overlay');
+            const mainContent = document.getElementById('main-content');
+            
+            document.body.classList.remove('no-scroll');
+            window.scrollTo(0, 0);
+            
+            overlay.style.opacity = '0';
+            mainContent.style.opacity = '1';
+            
+            setTimeout(() => {
+                overlay.style.visibility = 'hidden';
+                startGoldenDust();
+            }, 1200);
+
+            bgMusic.volume = 0.4;
+            bgMusic.play().then(() => {
+                isMusicPlaying = true;
+                updateAudioUI();
+            }).catch(e => console.log("Audio autoplay blocked"));
+        }
+
+        function toggleMusic() {
+            if (isMusicPlaying) { bgMusic.pause(); isMusicPlaying = false; } 
+            else { bgMusic.play(); isMusicPlaying = true; }
+            updateAudioUI();
+        }
+
+        function updateAudioUI() {
+            if (isMusicPlaying) {
+                musicIcon.classList.add('hidden');
+                musicWaves.classList.remove('hidden');
+            } else {
+                musicIcon.classList.remove('hidden');
+                musicWaves.classList.add('hidden');
+            }
+        }
+
+        // --- 4. Floating Golden Dust ---
+        function startGoldenDust() {
+            const container = document.getElementById('particles');
+            const particleCount = window.innerWidth > 768 ? 30 : 15;
+            
+            setInterval(() => {
+                if(container.childElementCount > particleCount) return;
+                const dust = document.createElement('div');
+                dust.classList.add('dust');
+                const size = Math.random() * 4 + 2;
+                dust.style.width = `${size}px`;
+                dust.style.height = `${size}px`;
+                dust.style.left = `${Math.random() * 100}vw`;
+                const duration = Math.random() * 10 + 10;
+                dust.style.animationDuration = `${duration}s`;
+                container.appendChild(dust);
+                setTimeout(() => dust.remove(), duration * 1000);
+            }, 500);
+        }
+
+        // --- 5. Countdown Timer ---
+        const countDownDate = new Date("Mar 25, 2026 18:00:00").getTime();
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            if (distance < 0) {
+                clearInterval(x);
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        }, 1000);
+
+        // --- 6. Scroll Reveal ---
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    </script>
+</body>
+</html>
